@@ -4,40 +4,52 @@
     display:flex;
     margin:10% 30%;
     box-shadow: 5px 10px 18px #888888;
+    flex-direction: row;
  }
  
  .resultado{
-   text-align: center;
+   text-align: left;
    position: relative;
-   width: 50%;
+   width: 70%;
    background: whitesmoke;
+   padding-left:20px;
+ }
+ .resultado h1{
+     text-align: center;
  }
  
  .formulario{
      background: rgb(16, 17, 88);
      text-align: center; 
      color: white; 
-     width: 70%; 
+     width: 30vw; 
+
  }
  fieldset{
-     border: none;
+     border: none; 
  }
  
  .campito{
      margin-bottom: 20px;
+     margin-top: 10px;
      border: none;
      outline: none;
      background-color: rgb(16, 17, 88);
      border-bottom-style: solid;
+     border-bottom-width: 1px;
      border-color:rgb(107, 106, 105);
      color: white;
  }
 
  .botonazo{
-     background-color: rgb(65, 65, 182);
-     padding:20px;
-     width: 100%;
-     color:white;
+    display: block;
+    width: 100%;
+    height: 50px;
+    align-content: flex-end;
+    background-color: #5762d6;
+    border: 0;
+    color: white;
+    margin-top:15px;
  
  }
  .botonazo:hover{

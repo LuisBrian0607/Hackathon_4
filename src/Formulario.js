@@ -1,34 +1,49 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Formulario.css';
 import { useForm } from 'react-hook-form';
 
 const Formu = () => {
 
     const { register, errors, handleSubmit } = useForm();
-    const onSubmit = (data, e) => {
-        <p>{data}</p>
-        console.log(data);
-        e.target.reset();
+    const [datos,Setdatos]=useState([]);
 
+    const onSubmit = (data, e) => {
+        Setdatos([...datos,data]);
+        e.target.reset();
+        
     }
 
     return (
         <>
             <div className="contenedor">
                 <div className="resultado">
-                    <h1>Welcome!</h1>
-                    
+                    <h1>Usuarios</h1>
+                    <div>
+                    {datos.map((item, index) => (
+                        <div className="card-container" key={index}>
+                        <label>Nombre: {item.fname}</label><br/>
+                        <label>Apellido: {item.lname}</label><br/>
+                        <label>Correo: {item.email}</label><br/>
+                        <label>Telefono: {item.telefono}</label><br/>
+                        <label>Fecha de Nacimiento: {item.birthday}</label><br/>
+                        <label>Dirección: {item.direccion}</label><br/>
+                        <hr/>
+                      </div>
+                    ))}
+                    </div>
+
                 </div>
                 <div className="formulario">
                     <form onSubmit={handleSubmit(onSubmit)} >
 
                         <h1>Registrate</h1>
                         <fieldset >
-                          
+
 
                             <input className="campito" type="text"
                                 placeholder="Nombre"
                                 name="fname"
+                                autoComplete="none"
                                 ref={
                                     register({
                                         required: {
@@ -36,7 +51,7 @@ const Formu = () => {
                                             message: 'Este campo es obligatorio'
                                         },
                                         maxLength: {
-                                            value: 8,
+                                            value: 12,
                                             message: 'el nombre es muy larga'
                                         }
                                     })
@@ -48,6 +63,7 @@ const Formu = () => {
                             <input className="campito" type="text"
                                 placeholder="Apellido"
                                 name="lname"
+                                autoComplete="none"
                                 ref={
                                     register({
                                         required: {
@@ -55,7 +71,7 @@ const Formu = () => {
                                             message: 'Este campo es obligatorio'
                                         },
                                         maxLength: {
-                                            value: 14,
+                                            value: 18,
                                             message: 'el apellido es muy largo'
                                         }
                                     })
@@ -63,7 +79,7 @@ const Formu = () => {
                             <span>
                                 {errors?.lname?.message}<br />
                             </span>
-                            <input className="campito" type="text" name="email" placeholder="Correo"
+                            <input className="campito" type="text" name="email" placeholder="Correo" autoComplete="none"
                                 ref={
                                     register({
                                         required: {
@@ -80,7 +96,7 @@ const Formu = () => {
                             <span>
                                 {errors?.email?.message}<br />
                             </span>
-                            <input className="campito" type="tel" name="telefono" placeholder="Telefono"
+                            <input className="campito" type="tel" name="telefono" placeholder="Telefono" autoComplete="none"
                                 ref={
                                     register({
                                         required: {
@@ -89,7 +105,7 @@ const Formu = () => {
                                         },
                                         maxLength: {
                                             value: 7,
-                                            message: ''
+                                            message: 'El número es invalido'
                                         }
                                     })
                                 }
@@ -97,28 +113,24 @@ const Formu = () => {
                             <span>
                                 {errors?.telefono?.message}<br />
                             </span>
-                            <input className="campito" type="date" name="birthday" 
+                            <input className="campito" type="text" name="birthday" placeholder="Fecha de Nacimiento" autoComplete="none"
                                 ref={
                                     register({
                                         required: {
                                             value: true,
-                                            message: 'ingrese su fecha de nacimiento'
+                                            message: 'Este campo es obligatorio'
                                         }
                                     })
                                 } /><br />
                             <span>
                                 {errors?.birthday?.message}<br />
                             </span>
-                            <input className="campito" type="text" name="direccion" placeholder="Dirección"
+                            <input className="campito" type="text" name="direccion" placeholder="Dirección" autoComplete="none"
                                 ref={
                                     register({
                                         required: {
                                             value: true,
-                                            message: 'La dirección es obligatoria'
-                                        },
-                                        minLength: {
-                                            value: 10,
-                                            message: 'Su dirección es muy corta'
+                                            message: 'Este campo es obligatorio'
                                         }
                                     })
                                 } /><br />
@@ -126,9 +138,9 @@ const Formu = () => {
                                 {errors?.direccion?.message}<br />
                             </span>
 
-
-                            <input className="botonazo" type="submit" value="Click me" />
-
+                          
+                            <input className="botonazo" type="submit" value="Submit" />
+                          
                         </fieldset>
                     </form>
                 </div>
